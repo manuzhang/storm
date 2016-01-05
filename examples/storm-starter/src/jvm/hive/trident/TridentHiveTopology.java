@@ -28,6 +28,8 @@ import backtype.storm.tuple.Fields;
 import backtype.storm.tuple.Values;
 import org.apache.storm.hive.bolt.mapper.DelimitedRecordHiveMapper;
 import org.apache.storm.hive.common.HiveOptions;
+import org.apache.storm.hive.trident.HiveStateFactory;
+import org.apache.storm.hive.trident.HiveUpdater;
 import storm.trident.Stream;
 import storm.trident.TridentState;
 import storm.trident.TridentTopology;
