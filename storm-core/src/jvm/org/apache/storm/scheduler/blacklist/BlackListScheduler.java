@@ -237,7 +237,9 @@ public class BlacklistScheduler implements IScheduler {
             int value=entry.getValue();
             if(value==windowSize){//port never exits once in tolerance time will be removed from cache
                 Set<Integer> slots=cachedSupervisors.get(supervisorKey);
-                slots.remove(slot);
+                if(slots!=null){//slots will be null while supervisor has been removed from cached supervisors
+                    slots.remove(slot);
+                }
                 cachedSupervisors.put(supervisorKey, slots);
                 LOG.info("slot {} has never exited once during tolerance time, proberbly be dead forever, removed from cache.",workerSlot);
             }
