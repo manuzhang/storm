@@ -1,3 +1,4 @@
+// TODO: add license headers
 package org.apache.storm.scheduler.blacklist;
 
 import org.apache.storm.Config;
@@ -10,14 +11,17 @@ import org.slf4j.LoggerFactory;
 import java.util.*;
 
 /**
+ * TODO: remove this and add comments
  * Created by howard.li on 2016/6/29.
  */
 public class BlacklistScheduler implements IScheduler {
+    // TODO: fix style (e.g. indentation, space)
     private static final Logger LOG = LoggerFactory.getLogger(BlacklistScheduler.class);
     DefaultScheduler defaultScheduler;
     @SuppressWarnings("rawtypes")
     private Map _conf;
 
+    // TODO: move all config names to Config.java
     public static final String BLACKLIST_ENABLE="topology.scheduler.blacklist.enable";
 
     public static final String TOLERANCE_TIME="storm.scheduler.blacklist.tolerance.time.secs";
@@ -44,6 +48,7 @@ public class BlacklistScheduler implements IScheduler {
     private Map<String,Set<Integer>> cachedSupervisors;
 
     //key is supervisor key ,value is supervisor ports
+    // TODO: why not use com.lmax.disruptor.RingBuffer ?
     private CircularBuffer<HashMap<String,Set<Integer>>> toleranceBuffer;
     private Set<WorkerSlot> slotsInBlacklistTopology;
 
@@ -97,6 +102,8 @@ public class BlacklistScheduler implements IScheduler {
     @Override
     public void schedule(Topologies topologies, Cluster cluster) {
         LOG.info("running Black List scheduler");
+
+        // TODO: remove debug logs
         Map<String, SupervisorDetails> supervisors = cluster.getSupervisors();
         for(Map.Entry<String,SupervisorDetails> entry:supervisors.entrySet()){
             SupervisorDetails supervisorDetails=entry.getValue();
@@ -134,6 +141,7 @@ public class BlacklistScheduler implements IScheduler {
         }
     }
 
+    // TODO: renamed to addMissingSupervisors
     private void badSupervisors(Map<String, SupervisorDetails> supervisors){
         Set<String> cachedSupervisorsKeySet=cachedSupervisors.keySet();
         Set<String> supervisorsKeySet=supervisors.keySet();
